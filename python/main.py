@@ -12,9 +12,22 @@ class MainPage(webapp2.RequestHandler):
         ret = []
         one = self.request.get("one")
         two = self.request.get("two")
-        for num in range(len(one)):
-            ret.append(one[num])
-            ret.append(two[num])
+        num1 = len(one)
+        num2 = len(two)
+        if num1 >= num2:
+            for num in range(num1):
+                if num < num2:
+                    ret.append(one[num])
+                    ret.append(two[num])
+                else:
+                    ret.append(one[num])
+        else:
+            for num in range(num2):
+                if num < num1:
+                    ret.append(one[num])
+                    ret.append(two[num])
+                else:
+                    ret.append(two[num])
         ret = "".join(ret)
         return ret
         #self.response.write(u'<html><body><p>ret</p></body></html>')               
